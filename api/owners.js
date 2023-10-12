@@ -1,4 +1,4 @@
-// Setup Sign up and Login API for Owner
+
 import express from 'express'
 import prisma from './lib/index.js';
 import bcrypt from 'bcrypt'
