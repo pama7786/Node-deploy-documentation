@@ -58,3 +58,17 @@ Make sure to setup your `seed.js` file in `prisma` directory. Add all the data y
 
 - Create new routes for sign up and login and make sure you created new models in Prisma.
 - Change the database to `Planetscale`.
+
+
+
+
+
+## License
+
+The Random Quote Generator is open-source software licensed under the MIT License. You are free to use, modify, and distribute this application for both commercial and non-commercial purposes. Please refer to the [LICENSE](LICENSE) file for more details.
+
+## Author
+
+- Name: Abdirahman Diis
+- Email: abdirahmanfarmajo7786@gmail.com
+- GitHub: [github.com/pama7786](https://github.com/pama7786)
