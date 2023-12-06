@@ -14,7 +14,7 @@
   "author": "Duraan",
   "license": "ISC",
   "devDependencies": {
-    "prisma": "^5.3.1"
+    "prisma": "^5.7.0"
   },
   "dependencies": {
     "@prisma/client": "^5.3.1",
@@ -24,72 +24,3 @@
     "jsonwebtoken": "^9.0.2"
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

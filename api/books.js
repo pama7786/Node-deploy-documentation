@@ -1,5 +1,7 @@
+// Create endpoints for books, make sure to use the middleware to authenticate the token
 import express from 'express'
 import prisma from './lib/index.js';
+import authenticate from './Middleware/Authenticate.js';
 
 const router = express.Router();
 
@@ -40,14 +42,15 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/create_book',authenticate, async (req, res) => {
     try {
         
-        const {authorId, title, price, image} = req.body;
+        const {authorId, bookstoreId, title, price, image} = req.body;
 
         const newBook = await prisma.book.create({
             data: {
                 authorId,
+                bookstoreId,
                 title,
                 price,
                 image,
@@ -55,21 +58,21 @@ router.post('/', async (req, res) => {
         });
 
         if(!newBook) {
-            return res.status(400).json({messsage: "Book was not created!"})
+            return res.status(400).json({status: 400, messsage: "Book was not created!"})
         }
 
-        res.status(200).json({message: "Book successFully created!"})
+        res.status(200).json({status: 200, message: "Book successFully created!"})
 
     } catch (error) {
         res.status(500).json({status: 500, message: error.message})
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/update_book/:id', authenticate, async (req, res) => {
     try {
         
         const {id} = req.params;
-        const {authorId,title, price, image} = req.body;
+        const {authorId, bookstoreId, title, price, image} = req.body;
 
         const updateBook = await prisma.book.update({
             where: {
@@ -78,6 +81,7 @@ router.put('/:id', async (req, res) => {
 
             data: {
                 authorId,
+                bookstoreId,
                 title,
                 price,
                 image,
@@ -95,7 +99,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/delete_book/:id', authenticate, async (req, res) => {
     try {
         
         const {id} = req.params;
@@ -107,13 +111,13 @@ router.delete('/:id', async (req, res) => {
         });
 
         if(!deleteBook) {
-            return res.status(400).json({ message: "Book was not deleted!"})
+            return res.status(400).json({status: 400, message: "Book was not deleted!"})
         }
 
-        res.status(200).json({ message: `Book successFully deleted`})
+        res.status(200).json({status: 200, message: `Book ${id} successFully deleted`})
 
     } catch (error) {
-        res.status(500).json({ message: error.message})
+        res.status(500).json({status: 500, message: error.message})
     }
 })
 

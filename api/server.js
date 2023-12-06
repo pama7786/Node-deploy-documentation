@@ -1,15 +1,16 @@
-import express from "express";
-import { json } from "express";
-import Authorsroute from './authors.js'
-import ownerRouter from './owner.js'
-import books from './books.js'
-import bookStore from './bookstores.js'
+import express from "express"
+import ownerRouter from './owners.js'
+import authorRouter from './authors.js'
+import bookstoreRouter from './bookstores.js'
+import bookRouter from './books.js'
+
 const server = express()
 
-server.use(json())
+server.use(express.json())
+
 server.use("/api/owners", ownerRouter)
-server.use('/api/authors', Authorsroute)
-server.use('/api/books', books)
-server.use('/api/bookstore', bookStore)
+server.use('/api/authors', authorRouter )
+server.use('/api/bookstore', bookstoreRouter )
+server.use('/api/books', bookRouter )
 
 export default server
